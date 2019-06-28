@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('checkout') {
-      steps {
-        sh 'ls'
+      parallel {
+        stage('checkout') {
+          steps {
+            sh 'ls'
+          }
+        }
+        stage('build') {
+          steps {
+            sh 'echo \'test\''
+          }
+        }
       }
     }
   }
